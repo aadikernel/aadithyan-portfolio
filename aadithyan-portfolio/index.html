@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aadithyan K — Developer Portfolio</title>
+
+<style>
+:root{
+  color-scheme:light dark;
+  --bg:light-dark(#f6f8fb,#0b0f16);
+  --surface:light-dark(#fff,#111722);
+  --surface2:light-dark(#eef2f7,#171e2b);
+  --text:light-dark(#101522,#f5f7fb);
+  --muted:light-dark(#5f6b7a,#aab5c5);
+  --line:light-dark(#dce2ea,#273142);
+  --accent:light-dark(#4f46e5,#818cf8);
+  --accent2:light-dark(#0f766e,#2dd4bf)
+}
+
+*{
+  box-sizing:border-box
+}
+
+html{
+  scroll-behavior:smooth
+}
+
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6
+}
+
+.root{
+  min-height:100vh;
+  background:var(--bg)
+}
+
+a{
+  color:inherit;
+  text-decoration:none
+}
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  backdrop-filter:blur(14px);
+  background:color-mix(in srgb,var(--bg) 86%,transparent);
+  border-bottom:1px solid var(--line)
+}
+
+.navin{
+  max-width:1100px;
+  margin:auto;
+  padding:15px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+.brand{
+  font-weight:800;
+  letter-spacing:-.03em
+}
+
+.links{
+  display:flex;
+  gap:20px;
+  font-size:14px;
+  color:var(--muted)
+}
+
+.links a:hover{
+  color:var(--text)
+}
+
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:0 22px
+}
+
+.hero{
+  min-height:72vh;
+  display:grid;
+  place-items:center;
+  padding:70px 0 50px
+}
+
+.eyebrow{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:7px 11px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  border-radius:999px;
+  color:var(--muted);
+  font-size:13px
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--accent2)
+}
+
+h1{
+  font-size:clamp(44px,8vw,82px);
+  line-height:.98;
+  letter-spacing:-.065em;
+  max-width:850px;
+  margin:22px 0 20px
+}
+
+h1 span{
+  color:var(--accent)
+}
+
+.lead{
+  font-size:clamp(18px,2.2vw,23px);
+  max-width:720px;
+  color:var(--muted);
+  margin:0 0 30px
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap
+}
+
+.btn{
+  padding:12px 17px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  font-weight:700;
+  font-size:14px
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  transition:.2s
+}
+
+.btn.primary{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:white
+}
+
+.section{
+  padding:78px 0;
+  border-top:1px solid var(--line)
+}
+
+.kicker{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--accent);
+  font-weight:800
+}
+
+.section h2{
+  font-size:clamp(28px,4vw,42px);
+  letter-spacing:-.04em;
+  margin:8px 0 30px
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px
+}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:24px
+}
+
+.card h3{
+  margin:0 0 8px;
+  font-size:21px
+}
+
+.card p{
+  margin:0;
+  color:var(--muted)
+}
+
+.tagrow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:18px
+}
+
+.tag{
+  font-size:12px;
+  padding:6px 9px;
+  border-radius:8px;
+  background:var(--surface2);
+  color:var(--muted)
+}
+
+.project{
+  display:flex;
+  flex-direction:column;
+  min-height:230px
+}
+
+.project .foot{
+  margin-top:auto;
+  padding-top:22px;
+  display:flex;
+  gap:12px
+}
+
+.smalllink{
+  font-size:13px;
+  font-weight:700;
+  color:var(--accent)
+}
+
+.about{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:35px
+}
+
+.about p{
+  color:var(--muted);
+  font-size:17px
+}
+
+.skills{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px
+}
+
+.skill{
+  padding:14px 16px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:12px;
+  font-weight:700
+}
+
+.timeline{
+  display:grid;
+  gap:14px
+}
+
+.item{
+  display:grid;
+  grid-template-columns:150px 1fr;
+  gap:25px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line)
+}
+
+.item time{
+  color:var(--muted);
+  font-size:13px
+}
+
+.item strong{
+  display:block;
+  font-size:17px
+}
+
+.item span{
+  color:var(--muted);
+  font-size:14px
+}
+
+.contact{
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+  align-items:center
+}
+
+.footer{
+  padding:35px 0 55px;
+  color:var(--muted);
+  font-size:13px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px
+}
+
+.menu{
+  display:none
+}
+
+@media(max-width:720px){
+
+  .links{
+    display:none
+  }
+
+  .menu{
+    display:block
+  }
+
+  .grid,
+  .about{
+    grid-template-columns:1fr
+  }
+
+  .skills{
+    grid-template-columns:1fr
+  }
+
+  .item{
+    grid-template-columns:1fr;
+    gap:3px
+  }
+
+  .contact{
+    flex-direction:column;
+    align-items:flex-start
+  }
+
+  .hero{
+    min-height:70vh;
+    padding-top:45px
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="root">
+
+<nav class="nav">
+  <div class="navin">
+
+    <a class="brand" href="#top">
+      Aadithyan K.
+    </a>
+
+    <div class="links">
+      <a href="#work">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <span class="menu">☰</span>
+
+  </div>
+</nav>
+
+
+<main id="top">
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div>
+
+    <div class="eyebrow">
+      <i class="dot"></i>
+      B.E. CSE · 5th Semester · Coimbatore
+    </div>
+
+    <h1>
+      Building useful web products with
+      <span>code & curiosity.</span>
+    </h1>
+
+    <p class="lead">
+      I’m Aadithyan K, a Computer Science student focused on
+      web development, backend systems, databases, and
+      placement-ready problem solving.
+    </p>
+
+    <div class="actions">
+
+      <a class="btn primary" href="#work">
+        View my work
+      </a>
+
+      <a
+        class="btn"
+        href="https://github.com/aadikernel"
+        target="_blank"
+      >
+        GitHub ↗
+      </a>
+
+      <a
+        class="btn"
+        href="https://www.linkedin.com/in/aadithyan-k-7b4a4b327/"
+        target="_blank"
+      >
+        LinkedIn ↗
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section class="section" id="work">
+
+  <div class="kicker">
+    Selected work
+  </div>
+
+  <h2>
+    Projects I’ve actually built.
+  </h2>
+
+  <div class="grid">
+
+
+    <!-- OPMAINT -->
+
+    <article class="card project">
+
+      <div>
+
+        <h3>
+          Permit-to-Work Module
+        </h3>
+
+        <p>
+          Full-stack workflow for creating, validating,
+          reviewing, and approving industrial work permits
+          with role-based access, safety data, hazards,
+          PPE, precautions, and status tracking.
+        </p>
+
+        <div class="tagrow">
+
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Express</span>
+          <span class="tag">Prisma</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Vercel</span>
+
+        </div>
+
+      </div>
+
+      <div class="foot">
+
+        <a
+          class="smalllink"
+          href="https://opmaint-ptw-lovat.vercel.app/"
+          target="_blank"
+        >
+          Live demo ↗
+        </a>
+
+        <a
+          class="smalllink"
+          href="https://github.com/aadikernel/opmaint-ptw"
+          target="_blank"
+        >
+          Source ↗
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- ALGORYX -->
+
+    <article class="card project">
+
+      <div>
+
+        <h3>
+          ALGORYX Internship
+        </h3>
+
+        <p>
+          Built a multi-week frontend experience covering
+          a React admin dashboard, animated landing page,
+          and 3D web experiences.
+        </p>
+
+        <div class="tagrow">
+
+          <span class="tag">React</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Tailwind</span>
+          <span class="tag">3D Web</span>
+          <span class="tag">Vercel</span>
+
+        </div>
+
+      </div>
+
+      <div class="foot">
+
+        <a
+          class="smalllink"
+          href="https://algoryx-internship-rxr5.vercel.app/"
+          target="_blank"
+        >
+          Project 1 ↗
+        </a>
+
+        <a
+          class="smalllink"
+          href="https://algoryx-internship-seven.vercel.app/"
+          target="_blank"
+        >
+          Project 3 ↗
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- CAMPUS SHARE -->
+
+    <article class="card project">
+
+      <div>
+
+        <h3>
+          CampusShare
+        </h3>
+
+        <p>
+          Campus-focused buy/rent platform for students,
+          built around listings and authentication with a
+          Node/Express backend and MongoDB.
+        </p>
+
+        <div class="tagrow">
+
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">JWT</span>
+
+        </div>
+
+      </div>
+
+      <div class="foot">
+
+        <a
+          class="smalllink"
+          href="https://github.com/aadikernel"
+          target="_blank"
+        >
+          GitHub profile ↗
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- VEGAN SNACKS -->
+
+    <article class="card project">
+
+      <div>
+
+        <h3>
+          Vegan Snacks
+        </h3>
+
+        <p>
+          Academic full-stack application with Spring Boot,
+          React, and MySQL, including REST endpoints and
+          custom expiry validation.
+        </p>
+
+        <div class="tagrow">
+
+          <span class="tag">Java 17</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">React</span>
+          <span class="tag">MySQL</span>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section class="section" id="skills">
+
+  <div class="kicker">
+    Toolkit
+  </div>
+
+  <h2>
+    Technologies I’m working with.
+  </h2>
+
+  <div class="skills">
+
+    <div class="skill">
+      Java · DSA
+    </div>
+
+    <div class="skill">
+      JavaScript · React
+    </div>
+
+    <div class="skill">
+      Node.js · Express
+    </div>
+
+    <div class="skill">
+      SQL · MySQL · PostgreSQL
+    </div>
+
+    <div class="skill">
+      MongoDB · Prisma
+    </div>
+
+    <div class="skill">
+      Git · GitHub · Vercel
+    </div>
+
+    <div class="skill">
+      HTML · CSS · Responsive UI
+    </div>
+
+    <div class="skill">
+      REST APIs · Authentication
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- EXPERIENCE -->
+
+<section class="section" id="experience">
+
+  <div class="kicker">
+    Experience
+  </div>
+
+  <h2>
+    Learning by shipping.
+  </h2>
+
+  <div class="timeline">
+
+
+    <div class="item">
+
+      <time>
+        2026
+      </time>
+
+      <div>
+
+        <strong>
+          Web Development Intern — ALGORYX Technologies
+        </strong>
+
+        <span>
+          Completed a frontend internship focused on React
+          interfaces, responsive design, animation, and
+          3D web experiences.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="item">
+
+      <time>
+        2026
+      </time>
+
+      <div>
+
+        <strong>
+          Web Development Intern Assignment — Opmaint
+        </strong>
+
+        <span>
+          Designed and deployed a full-stack Permit-to-Work
+          workflow with database-backed permit management
+          and approval flow.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="item">
+
+      <time>
+        2024–Present
+      </time>
+
+      <div>
+
+        <strong>
+          B.E. Computer Science & Engineering — SKCET
+        </strong>
+
+        <span>
+          Currently in 5th semester, building projects while
+          strengthening DSA, SQL, web development, and
+          software engineering fundamentals.
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="section">
+
+  <div class="about">
+
+    <div>
+
+      <div class="kicker">
+        About me
+      </div>
+
+      <h2>
+        Curious, practical, and still learning.
+      </h2>
+
+      <p>
+        I like understanding how software works end-to-end.
+        My current focus is becoming stronger at core
+        programming and DSA while building real applications
+        that I can deploy, explain, and improve.
+      </p>
+
+      <p>
+        I’m looking for opportunities where I can learn from
+        experienced developers, contribute to real products,
+        and turn my current skills into professional-level
+        engineering ability.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        What I bring
+      </h3>
+
+      <div class="tagrow">
+
+        <span class="tag">
+          Fast learner
+        </span>
+
+        <span class="tag">
+          Problem solving
+        </span>
+
+        <span class="tag">
+          Full-stack curiosity
+        </span>
+
+        <span class="tag">
+          Hands-on projects
+        </span>
+
+        <span class="tag">
+          Open to feedback
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="section" id="contact">
+
+  <div class="contact">
+
+    <div>
+
+      <div class="kicker">
+        Let’s connect
+      </div>
+
+      <h2 style="margin-bottom:8px">
+        Have an opportunity?
+      </h2>
+
+      <p style="margin:0;color:var(--muted)">
+        I’m open to internships and opportunities to learn
+        and contribute.
+      </p>
+
+      <p style="margin:12px 0 0;color:var(--muted)">
+        📞 9344844689
+        <br>
+        ✉️ aadithyankanagaraj@gmail.com
+      </p>
+
+    </div>
+
+
+    <div class="actions">
+
+      <a
+        class="btn primary"
+        href="mailto:aadithyankanagaraj@gmail.com"
+      >
+        Email me
+      </a>
+
+      <a
+        class="btn"
+        href="tel:+919344844689"
+      >
+        Call me
+      </a>
+
+      <a
+        class="btn"
+        href="https://www.linkedin.com/in/aadithyan-k-7b4a4b327/"
+        target="_blank"
+      >
+        LinkedIn ↗
+      </a>
+
+      <a
+        class="btn"
+        href="https://github.com/aadikernel"
+        target="_blank"
+      >
+        GitHub ↗
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+  <span>
+    © 2026 Aadithyan K.
+  </span>
+
+  <span>
+    B.E. CSE · Developer Portfolio
+  </span>
+
+</footer>
+
+
+</main>
+
+</div>
+
+</body>
+</html>
